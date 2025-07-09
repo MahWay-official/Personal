@@ -314,15 +314,22 @@
     }
     
     .comments-count {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: var(--highlight);
-      color: var(--primary);
-      padding: 2px 10px;
-      border-radius: 20px;
+      position: relative;
+      display: block;
+      margin: 20px 0;
+      padding: 10px 15px;
+      background: rgba(15, 52, 96, 0.5);
+      border-radius: 8px;
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .comments-count span {
+      color: var(--highlight);
+      font-size: 1.3rem;
+      margin: 0 5px;
     }
     
     .comment {
@@ -357,6 +364,7 @@
       display: flex;
       gap: 5px;
       margin: 10px 0;
+      justify-content: center;
     }
     
     .star {
@@ -366,7 +374,7 @@
       font-size: 1.3rem;
     }
     
-    .star.active, .star.hovered, .star:hover {
+    .star.active, .star.hovered {
       color: var(--highlight);
     }
     
@@ -383,7 +391,7 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
       margin-top: 15px;
     }
     
@@ -564,29 +572,29 @@
   <!-- شريط تغيير اللغة -->
   <div class="language-bar">
     <button class="language-btn active" onclick="changeLanguage('ar')">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjY2UxMTIyIiBkPSJNNDQ4IDk2SDEwNFY0MTZINDQ4eiIvPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik00NDggOTZIMzM2djMyMGgxMTJ6Ii8+PHBhdGggZ illsbD0iI2ZmZiIgZD0iTTE3NiA5NkgxMDR2MzIwSDMzNlY5NkgxNzZ6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTIyNCAyMDRoOTZ2MzJoLTk2eiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMjQgMjgwaDk2djMyaC05NnoiLz48Y2lyY2xlIGN4PSIyNzIiIGN5PSIyNDAiIHI9IjMyIiBmaWxsPSIjY2UxMTIyIi8+PC9zdmc+" alt="علم مصر">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg" alt="علم مصر">
     </button>
     <button class="language-btn" onclick="changeLanguage('en')">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCAzMCI+PHBhdGggZmlsbD0iIzAxMjE2OSIgZD0iTTAgMGg2MHYzMEgweiIvPjxwYXRoIGZpbGw9IiNjODEwMTIiIGQ9Ik0wIDBsNjAgMzBNNjAgMEwwIDMwIiBzdHJva2U9IiNjODEwMTIiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGZpbGw9IiNjODEwMTIiIGQ9Ik0wIDEybDYwLTEyTTAgMThsNjAgMTJNMCAyNGw2MCAxMiIvPjxwYXRoIGZpbGw9IiNjODEwMTIiIGQ9Ik02MCAxMkwwIDI0TTYwIDE4TDAgNk02MCAyNEwwIDEyIi8+PC9zdmc+" alt="علم إنجلترا">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="علم أمريكا">
     </button>
   </div>
 
   <header>
     <div class="profile-container">
-      <img class="profile-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="صورة محمود">
-      <h1>Mahmoud Medhat Sadeq</h1>
-      <p>المعروف بـ M.OPI.M - مصمم جرافيك، مبرمج، ومونتير</p>
+      <img class="profile-pic" src="https://lh3.google.com/u/0/d/1ormAaFa9UrJz-GJKEvx_fI7LLik764rf=w1920-h925-iv1?auditContext=forDisplay" alt="صورة محمود">
+      <h1 id="name-title">Mahmoud Medhat Sadeq</h1>
+      <p id="title-desc">المعروف بـ M.OPI.M - مصمم جرافيك، مبرمج، ومونتير</p>
     </div>
     
     <div class="tabs">
-      <button class="tab-btn active" data-tab="skills">المهارات</button>
-      <button class="tab-btn" data-tab="services">طلب خدمة</button>
-      <button class="tab-btn" data-tab="comments">آراء العملاء</button>
+      <button class="tab-btn active" data-tab="skills" id="skills-tab">المهارات</button>
+      <button class="tab-btn" data-tab="services" id="services-tab">طلب خدمة</button>
+      <button class="tab-btn" data-tab="comments" id="comments-tab">آراء العملاء</button>
     </div>
   </header>
 
   <section id="skills" class="active">
-    <h2><i class="fas fa-code"></i> المهارات</h2>
+    <h2><i class="fas fa-code"></i> <span id="skills-title">المهارات</span></h2>
     <div class="skills-grid">
       <div class="skill-card">
         <i class="fab fa-html5 skill-icon"></i>
@@ -632,78 +640,49 @@
   </section>
 
   <section id="services">
-    <h2><i class="fas fa-handshake"></i> طلب خدمة</h2>
+    <h2><i class="fas fa-handshake"></i> <span id="services-title">طلب خدمة</span></h2>
     <form id="serviceForm">
-      <label for="name">الاسم أو اسم الشركة <span class="required">*</span></label>
+      <label for="name"><span id="name-label">الاسم أو اسم الشركة</span> <span class="required">*</span></label>
       <input type="text" id="name" name="name" required placeholder="اسمك أو اسم شركتك">
       
-      <label for="phone">رقم الهاتف <span class="required">*</span></label>
+      <label for="phone"><span id="phone-label">رقم الهاتف</span> <span class="required">*</span></label>
       <input type="tel" id="phone" name="phone" required placeholder="مثال: 01XXXXXXXX">
       
-      <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+      <label for="email"><span id="email-label">البريد الإلكتروني</span> <span class="required">*</span></label>
       <input type="email" id="email" name="email" required placeholder="example@domain.com">
       
-      <label for="service">نوع الخدمة <span class="required">*</span></label>
+      <label for="service"><span id="service-label">نوع الخدمة</span> <span class="required">*</span></label>
       <select id="service" name="service" required>
-        <option value="">-- اختر نوع الخدمة --</option>
-        <option value="سريعة">سريعة (تسليم خلال 48 ساعة)</option>
-        <option value="عادية">عادية (تسليم خلال أسبوع)</option>
-        <option value="مخصصة">مخصصة (تسليم خلال أسبوعين)</option>
+        <option value="">-- <span id="choose-service">اختر نوع الخدمة</span> --</option>
+        <option value="سريعة"><span id="fast-service">سريعة (تسليم خلال 48 ساعة)</span></option>
+        <option value="عادية"><span id="normal-service">عادية (تسليم خلال أسبوع)</span></option>
+        <option value="مخصصة"><span id="custom-service">مخصصة (تسليم خلال أسبوعين)</span></option>
       </select>
       
-      <label for="message">تفاصيل الخدمة المطلوبة <span class="required">*</span></label>
+      <label for="message"><span id="details-label">تفاصيل الخدمة المطلوبة</span> <span class="required">*</span></label>
       <textarea id="message" name="message" rows="5" required placeholder="أخبرنا بالتفاصيل التي تحتاجها..."></textarea>
       
-      <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> إرسال الطلب</button>
+      <button type="submit" id="submitBtn"><i class="fas fa-paper-plane"></i> <span id="submit-label">إرسال الطلب</span></button>
       <div id="serviceCountdown" class="countdown"></div>
     </form>
   </section>
 
   <section id="comments">
-    <h2><i class="fas fa-comments"></i> آراء العملاء <span class="comments-count">7554</span></h2>
+    <h2><i class="fas fa-comments"></i> <span id="comments-title">آراء العملاء</span></h2>
     
     <div class="comments-container" id="commentsContainer">
-      <div class="comment">
-        <span class="date">1 يوليو 2025</span>
-        <div class="rating">
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-        </div>
-        <p>الراجل ده شغله تحفة فعلًا، خلص الفيديو في أقل من يومين وطلع شكل تاني خالص!</p>
-      </div>
-      
-      <div class="comment">
-        <span class="date">29 يونيو 2025</span>
-        <div class="rating">
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <p>ممتاز جدًا في التعامل وشغله احترافي، أنصح أي حد يشتغل معاه.</p>
-      </div>
-      
-      <div class="comment">
-        <span class="date">25 يونيو 2025</span>
-        <div class="rating">
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star active"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <p>بصراحة مشيت من عنده بسبب طريقته في الكلام، بس شغله حلو.</p>
-      </div>
+      <!-- التعليقات سيتم إضافتها ديناميكياً -->
+    </div>
+    
+    <!-- عدد التعليقات أسفل التعليقات -->
+    <div class="comments-count">
+      <span id="comments-count-label">عدد التعليقات:</span> <span id="commentsCount">0</span>
     </div>
 
     <div class="new-comment">
-      <h3>اكتب تعليقك</h3>
+      <h3 id="add-comment-title">اكتب تعليقك</h3>
       <form id="commentForm">
-        <label>تقييمك</label>
+        <label id="rating-label">تقييمك</label>
         <div class="rating" id="rating">
           <i class="star fas fa-star" data-rating="1"></i>
           <i class="star fas fa-star" data-rating="2"></i>
@@ -712,17 +691,17 @@
           <i class="star fas fa-star" data-rating="5"></i>
         </div>
         
-        <label for="userComment">تعليقك</label>
+        <label for="userComment" id="comment-label">تعليقك</label>
         <textarea id="userComment" required rows="3" placeholder="شاركنا تجربتك..."></textarea>
         
-        <button type="submit" id="commentBtn"><i class="fas fa-comment"></i> إرسال التعليق</button>
+        <button type="submit" id="commentBtn"><i class="fas fa-comment"></i> <span id="comment-submit-label">إرسال التعليق</span></button>
         <div id="commentCountdown" class="countdown"></div>
       </form>
     </div>
   </section>
   
   <footer>
-    <p>جميع الحقوق محفوظة &copy; 2025 | Mahmoud Medhat Sadeq (M.OPI.M)</p>
+    <p id="copyright">جميع الحقوق محفوظة &copy; 2025 | Mahmoud Medhat Sadeq (M.OPI.M)</p>
     <div class="social-links">
       <a href="https://wa.me/1234567890" target="_blank" title="واتساب">
         <i class="fab fa-whatsapp"></i>
@@ -733,6 +712,9 @@
       <a href="https://t.me/username" target="_blank" title="تلجرام">
         <i class="fab fa-telegram"></i>
       </a>
+      <a href="https://discord.gg/username" target="_blank" title="ديسكورد">
+        <i class="fab fa-discord"></i>
+      </a>
       <a href="https://facebook.com/username" target="_blank" title="فيسبوك">
         <i class="fab fa-facebook"></i>
       </a>
@@ -742,11 +724,11 @@
   <!-- رسالة التأكيد -->
   <div class="confirmation-dialog" id="confirmationDialog">
     <div class="dialog-content">
-      <h3><i class="fas fa-question-circle"></i> تأكيد الإرسال</h3>
-      <p>هل أنت متأكد أنك تريد إرسال طلب الخدمة؟</p>
+      <h3><i class="fas fa-question-circle"></i> <span id="confirm-title">تأكيد الإرسال</span></h3>
+      <p id="confirm-message">هل أنت متأكد أنك تريد إرسال طلب الخدمة؟</p>
       <div class="dialog-buttons">
-        <button class="dialog-button dialog-confirm" onclick="confirmService()">نعم، أرسل</button>
-        <button class="dialog-button dialog-cancel" onclick="cancelService()">إلغاء</button>
+        <button class="dialog-button dialog-confirm" onclick="confirmService()"><span id="confirm-yes">نعم، أرسل</span></button>
+        <button class="dialog-button dialog-cancel" onclick="cancelService()"><span id="confirm-cancel">إلغاء</span></button>
       </div>
     </div>
   </div>
@@ -755,8 +737,8 @@
   <div class="success-message" id="successMessage">
     <i class="fas fa-check-circle"></i>
     <div>
-      <strong>تم الإرسال بنجاح!</strong>
-      <p>شكرًا لك، تم استلام طلبك/تعليقك بنجاح.</p>
+      <strong id="success-title">تم الإرسال بنجاح!</strong>
+      <p id="success-message">شكرًا لك، تم استلام طلبك/تعليقك بنجاح.</p>
     </div>
   </div>
 
@@ -868,15 +850,40 @@
       const countdownElement = document.getElementById(`${type}Countdown`);
       
       if (remainingTime > 0) {
-        countdownElement.innerHTML = `يمكنك الإرسال مرة أخرى بعد: <span class="countdown-box">${formatTime(remainingTime)}</span>`;
+        countdownElement.innerHTML = `${type === 'service' ? document.getElementById('wait-service').textContent : document.getElementById('wait-comment').textContent} <span class="countdown-box">${formatTime(remainingTime)}</span>`;
       } else {
         countdownElement.innerHTML = '';
         document.getElementById(type === 'service' ? 'submitBtn' : 'commentBtn').disabled = false;
         document.getElementById(type === 'service' ? 'submitBtn' : 'commentBtn').innerHTML = 
           type === 'service' 
-            ? '<i class="fas fa-paper-plane"></i> إرسال الطلب' 
-            : '<i class="fas fa-comment"></i> إرسال التعليق';
+            ? `<i class="fas fa-paper-plane"></i> ${document.getElementById('submit-label').textContent}` 
+            : `<i class="fas fa-comment"></i> ${document.getElementById('comment-submit-label').textContent}`;
       }
+    }
+    
+    // إضافة تعليق إلى القائمة
+    function addCommentToContainer(commentData) {
+      const commentContainer = document.createElement("div");
+      commentContainer.className = "comment";
+      
+      let starsHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        if (i <= commentData.rating) {
+          starsHTML += '<i class="fas fa-star active"></i>';
+        } else {
+          starsHTML += '<i class="fas fa-star"></i>';
+        }
+      }
+      
+      commentContainer.innerHTML = `
+        <span class="date">${commentData.date}</span>
+        <div class="rating">${starsHTML}</div>
+        <p>${commentData.text}</p>
+      `;
+      
+      // إضافة التعليق الجديد في الأعلى
+      const commentsContainer = document.getElementById("commentsContainer");
+      commentsContainer.insertBefore(commentContainer, commentsContainer.firstChild);
     }
     
     // إضافة التعليقات
@@ -885,7 +892,7 @@
       
       // التحقق من الوقت المنقضي
       if (!checkLastSubmissionTime('comment')) {
-        alert("لقد أضفت تعليق بالفعل. يمكنك إضافة تعليق جديد بعد مرور 12 ساعة.");
+        alert(document.getElementById('comment-wait-alert').textContent);
         return false;
       }
       
@@ -893,13 +900,7 @@
       
       // التحقق من وجود محتوى في التعليق
       if (!commentText.trim()) {
-        alert("الرجاء كتابة تعليق قبل الإرسال");
-        return false;
-      }
-      
-      // التحقق من طول التعليق
-      if (commentText.trim().length < 1) {
-        alert("يجب أن يحتوي التعليق على حرف واحد على الأقل");
+        alert(document.getElementById('comment-empty-alert').textContent);
         return false;
       }
       
@@ -908,9 +909,6 @@
         return false;
       }
       
-      const commentContainer = document.createElement("div");
-      commentContainer.className = "comment";
-      
       const today = new Date();
       const dateString = today.toLocaleDateString("ar-EG", { 
         day: 'numeric', 
@@ -918,35 +916,20 @@
         year: 'numeric' 
       });
       
-      let starsHTML = '';
-      for (let i = 1; i <= 5; i++) {
-        if (i <= selectedRating) {
-          starsHTML += '<i class="fas fa-star active"></i>';
-        } else {
-          starsHTML += '<i class="fas fa-star"></i>';
-        }
-      }
+      const commentData = {
+        text: commentText,
+        rating: selectedRating,
+        date: dateString
+      };
       
-      commentContainer.innerHTML = `
-        <span class="date">${dateString}</span>
-        <div class="rating">${starsHTML}</div>
-        <p>${commentText}</p>
-      `;
+      // حفظ التعليق في localStorage
+      saveCommentToStorage(commentData);
       
-      // إضافة التعليق الجديد في الأعلى
-      const commentsContainer = document.getElementById("commentsContainer");
-      commentsContainer.insertBefore(commentContainer, commentsContainer.firstChild);
+      // إضافة التعليق إلى القائمة
+      addCommentToContainer(commentData);
       
       // زيادة عدد التعليقات
-      const commentsCount = document.querySelector('.comments-count');
-      const currentCount = parseInt(commentsCount.textContent);
-      commentsCount.textContent = currentCount + 1;
-      
-      // حذف التعليق الرابع إذا تجاوز العدد 3
-      const allComments = commentsContainer.querySelectorAll('.comment');
-      if (allComments.length > 3) {
-        commentsContainer.removeChild(allComments[allComments.length - 1]);
-      }
+      updateCommentsCount();
       
       // تحديث وقت الإرسال
       updateSubmissionTime('comment');
@@ -964,12 +947,67 @@
       // تعطيل الزر وإظهار العد التنازلي
       const commentBtn = document.getElementById('commentBtn');
       commentBtn.disabled = true;
-      commentBtn.innerHTML = '<i class="fas fa-clock"></i> انتظر 12 ساعة للإرسال';
+      commentBtn.innerHTML = `<i class="fas fa-clock"></i> ${document.getElementById('wait-comment').textContent}`;
       
       // بدء العد التنازلي
       setInterval(() => updateCountdown('comment'), 1000);
       
       return false;
+    }
+    
+    // حفظ التعليق في localStorage
+    function saveCommentToStorage(comment) {
+      let comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.unshift(comment); // إضافة التعليق الجديد في البداية
+      localStorage.setItem('comments', JSON.stringify(comments));
+    }
+    
+    // تحميل التعليقات من localStorage
+    function loadCommentsFromStorage() {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentsContainer = document.getElementById("commentsContainer");
+      
+      // إضافة التعليقات المزيفة الأولية إذا لم يكن هناك تعليقات
+      if (comments.length === 0) {
+        const fakeComments = [
+          {
+            text: "الراجل ده شغله تحفة فعلًا، خلص الفيديو في أقل من يومين وطلع شكل تاني خالص!",
+            rating: 5,
+            date: "1 يوليو 2025"
+          },
+          {
+            text: "ممتاز جدًا في التعامل وشغله احترافي، أنصح أي حد يشتغل معاه.",
+            rating: 4,
+            date: "29 يونيو 2025"
+          },
+          {
+            text: "بصراحة مشيت من عنده بسبب طريقته في الكلام، بس شغله حلو.",
+            rating: 3,
+            date: "25 يونيو 2025"
+          }
+        ];
+        
+        fakeComments.forEach(comment => {
+          saveCommentToStorage(comment);
+        });
+        
+        // إعادة تحميل التعليقات بعد الإضافة
+        return loadCommentsFromStorage();
+      }
+      
+      // عرض التعليقات
+      comments.forEach(comment => {
+        addCommentToContainer(comment);
+      });
+      
+      // تحديث عدد التعليقات
+      updateCommentsCount();
+    }
+    
+    // تحديث عدد التعليقات
+    function updateCommentsCount() {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      document.getElementById('commentsCount').textContent = comments.length;
     }
     
     // خدمة طلب الخدمة
@@ -982,13 +1020,13 @@
       
       // التحقق من الوقت المنقضي
       if (!checkLastSubmissionTime('service')) {
-        alert("لقد قمت بإرسال طلب خدمة بالفعل. يمكنك إرسال طلب جديد بعد مرور 12 ساعة.");
+        alert(document.getElementById('service-wait-alert').textContent);
         return false;
       }
       
       // التحقق من صحة النموذج
       if (!serviceForm.checkValidity()) {
-        alert("الرجاء ملء جميع الحقول الإلزامية");
+        alert(document.getElementById('required-alert').textContent);
         return false;
       }
       
@@ -1011,7 +1049,7 @@
       
       // تعطيل الزر وإظهار العد التنازلي
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-clock"></i> انتظر 12 ساعة للإرسال';
+      submitBtn.innerHTML = `<i class="fas fa-clock"></i> ${document.getElementById('wait-service').textContent}`;
       
       // بدء العد التنازلي
       setInterval(() => updateCountdown('service'), 1000);
@@ -1021,23 +1059,127 @@
       confirmationDialog.classList.remove('active');
     }
     
-    // تغيير اللغة (نموذج أولي)
+    // نظام الترجمة
+    const translations = {
+      ar: {
+        "name-title": "Mahmoud Medhat Sadeq",
+        "title-desc": "المعروف بـ M.OPI.M - مصمم جرافيك، مبرمج، ومونتير",
+        "skills-tab": "المهارات",
+        "services-tab": "طلب خدمة",
+        "comments-tab": "آراء العملاء",
+        "skills-title": "المهارات",
+        "services-title": "طلب خدمة",
+        "name-label": "الاسم أو اسم الشركة",
+        "phone-label": "رقم الهاتف",
+        "email-label": "البريد الإلكتروني",
+        "service-label": "نوع الخدمة",
+        "choose-service": "اختر نوع الخدمة",
+        "fast-service": "سريعة (تسليم خلال 48 ساعة)",
+        "normal-service": "عادية (تسليم خلال أسبوع)",
+        "custom-service": "مخصصة (تسليم خلال أسبوعين)",
+        "details-label": "تفاصيل الخدمة المطلوبة",
+        "submit-label": "إرسال الطلب",
+        "comments-title": "آراء العملاء",
+        "comments-count-label": "عدد التعليقات:",
+        "add-comment-title": "اكتب تعليقك",
+        "rating-label": "تقييمك",
+        "comment-label": "تعليقك",
+        "comment-submit-label": "إرسال التعليق",
+        "copyright": "جميع الحقوق محفوظة &copy; 2025 | Mahmoud Medhat Sadeq (M.OPI.M)",
+        "confirm-title": "تأكيد الإرسال",
+        "confirm-message": "هل أنت متأكد أنك تريد إرسال طلب الخدمة؟",
+        "confirm-yes": "نعم، أرسل",
+        "confirm-cancel": "إلغاء",
+        "success-title": "تم الإرسال بنجاح!",
+        "success-message": "شكرًا لك، تم استلام طلبك/تعليقك بنجاح.",
+        "required-alert": "الرجاء ملء جميع الحقول الإلزامية",
+        "service-wait-alert": "لقد قمت بإرسال طلب خدمة بالفعل. يمكنك إرسال طلب جديد بعد مرور 12 ساعة.",
+        "comment-wait-alert": "لقد أضفت تعليق بالفعل. يمكنك إضافة تعليق جديد بعد مرور 12 ساعة.",
+        "comment-empty-alert": "الرجاء كتابة تعليق قبل الإرسال",
+        "wait-service": "انتظر 12 ساعة للإرسال",
+        "wait-comment": "انتظر 12 ساعة للإرسال"
+      },
+      en: {
+        "name-title": "Mahmoud Medhat Sadeq",
+        "title-desc": "Known as M.OPI.M - Graphic Designer, Programmer, and Editor",
+        "skills-tab": "Skills",
+        "services-tab": "Request Service",
+        "comments-tab": "Customer Reviews",
+        "skills-title": "Skills",
+        "services-title": "Request Service",
+        "name-label": "Name or Company Name",
+        "phone-label": "Phone Number",
+        "email-label": "Email",
+        "service-label": "Service Type",
+        "choose-service": "Choose Service Type",
+        "fast-service": "Fast (Delivery within 48 hours)",
+        "normal-service": "Normal (Delivery within a week)",
+        "custom-service": "Custom (Delivery within 2 weeks)",
+        "details-label": "Required Service Details",
+        "submit-label": "Submit Request",
+        "comments-title": "Customer Reviews",
+        "comments-count-label": "Total Comments:",
+        "add-comment-title": "Write Your Comment",
+        "rating-label": "Your Rating",
+        "comment-label": "Your Comment",
+        "comment-submit-label": "Submit Comment",
+        "copyright": "All Rights Reserved &copy; 2025 | Mahmoud Medhat Sadeq (M.OPI.M)",
+        "confirm-title": "Confirm Submission",
+        "confirm-message": "Are you sure you want to submit the service request?",
+        "confirm-yes": "Yes, Submit",
+        "confirm-cancel": "Cancel",
+        "success-title": "Submitted Successfully!",
+        "success-message": "Thank you, your request/comment has been received successfully.",
+        "required-alert": "Please fill in all required fields",
+        "service-wait-alert": "You have already submitted a service request. You can submit a new request after 12 hours.",
+        "comment-wait-alert": "You have already added a comment. You can add a new comment after 12 hours.",
+        "comment-empty-alert": "Please write a comment before submitting",
+        "wait-service": "Wait 12 hours to submit",
+        "wait-comment": "Wait 12 hours to submit"
+      }
+    };
+    
+    // تغيير اللغة
     function changeLanguage(lang) {
       const buttons = document.querySelectorAll('.language-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
       event.target.closest('.language-btn').classList.add('active');
       
-      if (lang === 'en') {
-        // سيتم تنفيذ الترجمة الفعلية هنا
-        alert('سيتم تحويل الموقع إلى الإنجليزية في النسخة الكاملة');
-      } else {
-        // سيتم تنفيذ الترجمة الفعلية هنا
-        alert('سيتم تحويل الموقع إلى العربية في النسخة الكاملة');
-      }
+      // تغيير اتجاه الصفحة
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = lang;
+      
+      // تحديث النصوص
+      Object.keys(translations[lang]).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.placeholder = translations[lang][key];
+          } else {
+            element.textContent = translations[lang][key];
+          }
+        }
+      });
     }
     
     // تعطير الأزرار عند التحميل
     document.addEventListener('DOMContentLoaded', () => {
+      // إضافة عناصر خفية للترجمة
+      const hiddenElements = document.createElement('div');
+      hiddenElements.style.display = 'none';
+      hiddenElements.innerHTML = `
+        <span id="required-alert">الرجاء ملء جميع الحقول الإلزامية</span>
+        <span id="service-wait-alert">لقد قمت بإرسال طلب خدمة بالفعل. يمكنك إرسال طلب جديد بعد مرور 12 ساعة.</span>
+        <span id="comment-wait-alert">لقد أضفت تعليق بالفعل. يمكنك إضافة تعليق جديد بعد مرور 12 ساعة.</span>
+        <span id="comment-empty-alert">الرجاء كتابة تعليق قبل الإرسال</span>
+        <span id="wait-service">انتظر 12 ساعة للإرسال</span>
+        <span id="wait-comment">انتظر 12 ساعة للإرسال</span>
+      `;
+      document.body.appendChild(hiddenElements);
+      
+      // تحميل التعليقات من التخزين المحلي
+      loadCommentsFromStorage();
+      
       // تحديث حالة أزرار الإرسال
       if (!checkLastSubmissionTime('service')) {
         submitBtn.disabled = true;
