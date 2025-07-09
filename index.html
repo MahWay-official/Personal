@@ -13,6 +13,9 @@
       --light: #e6e6e6;
       --highlight: #f1c40f;
       --transition: all 0.3s ease;
+      --positive: #2ecc71;
+      --neutral: #f39c12;
+      --negative: #e74c3c;
     }
     
     * {
@@ -354,6 +357,33 @@
       margin-bottom: 8px;
     }
     
+    .comment .rating {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .comment .star {
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+    
+    .comment .star.active {
+      color: var(--highlight);
+    }
+    
+    .comment .star.positive {
+      color: var(--positive);
+    }
+    
+    .comment .star.neutral {
+      color: var(--neutral);
+    }
+    
+    .comment .star.negative {
+      color: var(--negative);
+    }
+    
     .new-comment {
       margin-top: 30px;
       padding-top: 20px;
@@ -581,7 +611,7 @@
 
   <header>
     <div class="profile-container">
-<img class="profile-pic" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t39.30808-6/480165206_3885436888433146_8651813085679743150_n.jpg?stp=dst-jpg_p526x296_tt6&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=6ee11a&amp;_nc_ohc=z5KBKS-4KeUQ7kNvwHSDkyG&amp;_nc_oc=AdlYnQlZo3jE97f6BVietWT2ZMTfEg1NZPyZXB-sQxyYmVylPBkOtyevHYsTF4SBPNc&amp;_nc_zt=23&amp;_nc_ht=scontent-hbe1-1.xx&amp;_nc_gid=KugIi31X7ugHVQvSVEbw2w&amp;oh=00_AfQCNvlaEUgxmaqrZp9krFuLKP3J1X6yRY3bb2U3vU_yng&amp;oe=687489AA" alt="صورة محمود مدحت صدق">
+      <img class="profile-pic" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t39.30808-6/480165206_3885436888433146_8651813085679743150_n.jpg?stp=dst-jpg_p526x296_tt6&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=6ee11a&amp;_nc_ohc=z5KBKS-4KeUQ7kNvwHSDkyG&amp;_nc_oc=AdlYnQlZo3jE97f6BVietWT2ZMTfEg1NZPyZXB-sQxyYmVylPBkOtyevHYsTF4SBPNc&amp;_nc_zt=23&amp;_nc_ht=scontent-hbe1-1.xx&amp;_nc_gid=KugIi31X7ugHVQvSVEbw2w&amp;oh=00_AfQCNvlaEUgxmaqrZp9krFuLKP3J1X6yRY3bb2U3vU_yng&amp;oe=687489AA" alt="صورة محمود مدحت صدق">
       <h1 id="name-title">Mahmoud Medhat Sadeq</h1>
       <p id="title-desc">المعروف بـ M.OPI.M - مصمم جرافيك، مبرمج، ومونتير</p>
     </div>
@@ -676,7 +706,7 @@
     
     <!-- عدد التعليقات أسفل التعليقات -->
     <div class="comments-count">
-      <span id="comments-count-label">عدد التعليقات:</span> <span id="commentsCount">0</span>
+      <span id="comments-count-label">عدد التعليقات:</span> <span id="commentsCount">1341</span>
     </div>
 
     <div class="new-comment">
@@ -869,9 +899,15 @@
       let starsHTML = '';
       for (let i = 1; i <= 5; i++) {
         if (i <= commentData.rating) {
-          starsHTML += '<i class="fas fa-star active"></i>';
+          if (commentData.rating >= 4) {
+            starsHTML += '<i class="star fas fa-star active positive"></i>';
+          } else if (commentData.rating >= 3) {
+            starsHTML += '<i class="star fas fa-star active neutral"></i>';
+          } else {
+            starsHTML += '<i class="star fas fa-star active negative"></i>';
+          }
         } else {
-          starsHTML += '<i class="fas fa-star"></i>';
+          starsHTML += '<i class="star fas fa-star"></i>';
         }
       }
       
@@ -967,7 +1003,7 @@
       const comments = JSON.parse(localStorage.getItem('comments')) || [];
       const commentsContainer = document.getElementById("commentsContainer");
       
-      // إضافة التعليقات المزيفة الأولية إذا لم يكن هناك تعليقات
+      // إضافة التعليقات الوهمية الأولية
       if (comments.length === 0) {
         const fakeComments = [
           {
@@ -984,6 +1020,51 @@
             text: "بصراحة مشيت من عنده بسبب طريقته في الكلام، بس شغله حلو.",
             rating: 3,
             date: "25 يونيو 2025"
+          },
+          {
+            text: "ما شاء الله، إبداع في الشغل وسرعة في التنفيذ.",
+            rating: 5,
+            date: "20 يونيو 2025"
+          },
+          {
+            text: "التسليم كان في الوقت المحدد والجودة ممتازة، شكرًا.",
+            rating: 5,
+            date: "18 يونيو 2025"
+          },
+          {
+            text: "جيد لكن الأسعار غالية شوية.",
+            rating: 3,
+            date: "15 يونيو 2025"
+          },
+          {
+            text: "مافيش كلام، دايماً مبدع ومتجاوب.",
+            rating: 5,
+            date: "10 يونيو 2025"
+          },
+          {
+            text: "التصميم كان جيد لكن التأخير في التسليم كان مشكلة.",
+            rating: 2,
+            date: "5 يونيو 2025"
+          },
+          {
+            text: "شغل متوسط، لكنه يحاول يرضي العميل.",
+            rating: 3,
+            date: "1 يونيو 2025"
+          },
+          {
+            text: "للأسف التجربة كانت سيئة، لم يكن هناك تواصل جيد.",
+            rating: 1,
+            date: "28 مايو 2025"
+          },
+          {
+            text: "أفضل مونتير شفت حياته، شغله بجد تحفه!",
+            rating: 5,
+            date: "25 مايو 2025"
+          },
+          {
+            text: "جودة الشغل ممتازة لكن التأخير في التسليم غير مقبول.",
+            rating: 2,
+            date: "20 مايو 2025"
           }
         ];
         
@@ -999,15 +1080,12 @@
       comments.forEach(comment => {
         addCommentToContainer(comment);
       });
-      
-      // تحديث عدد التعليقات
-      updateCommentsCount();
     }
     
     // تحديث عدد التعليقات
     function updateCommentsCount() {
       const comments = JSON.parse(localStorage.getItem('comments')) || [];
-      document.getElementById('commentsCount').textContent = comments.length;
+      document.getElementById('commentsCount').textContent = "1341";
     }
     
     // خدمة طلب الخدمة
@@ -1179,6 +1257,9 @@
       
       // تحميل التعليقات من التخزين المحلي
       loadCommentsFromStorage();
+      
+      // تحديث عدد التعليقات
+      updateCommentsCount();
       
       // تحديث حالة أزرار الإرسال
       if (!checkLastSubmissionTime('service')) {
