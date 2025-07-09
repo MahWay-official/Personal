@@ -109,6 +109,7 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
+      position: relative;
     }
     
     .profile-pic {
@@ -119,11 +120,100 @@
       border: 3px solid var(--highlight);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       transition: var(--transition);
+      position: relative;
+      z-index: 15;
     }
     
     .profile-pic:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+    }
+    
+    /* تأثيرات إضافية للكوكب */
+    .profile-pic::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 60%);
+      z-index: 15;
+      pointer-events: none;
+    }
+    
+    .profile-pic::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      z-index: 10;
+      pointer-events: none;
+      animation: planet-glow 4s ease-in-out infinite alternate;
+    }
+    
+    @keyframes planet-glow {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.7; }
+    }
+    
+    /* فقاعة شعار MahWay كقمر يدور */
+    .mahway-bubble {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      margin: -25px 0 0 -25px;
+      background: var(--highlight);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
+      transition: var(--transition);
+      z-index: 20;
+      cursor: pointer;
+      animation: 
+        orbit 15s linear infinite,
+        bubble-pulse 2s infinite;
+    }
+    
+    .mahway-bubble:hover {
+      animation-play-state: paused;
+      transform: scale(1.2);
+      box-shadow: 0 0 25px rgba(241, 196, 15, 0.9);
+    }
+    
+    .mahway-bubble:active {
+      transform: scale(0.95);
+    }
+    
+    .mahway-bubble img {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.9));
+    }
+    
+    @keyframes orbit {
+      0% {
+        transform: rotate(0deg) translateX(110px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateX(110px) rotate(-360deg);
+      }
+    }
+    
+    @keyframes bubble-pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     
     header h1 {
@@ -484,6 +574,16 @@
         height: 40px;
         font-size: 1.3rem;
       }
+      
+      .mahway-bubble {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .mahway-bubble img {
+        width: 25px;
+        height: 25px;
+      }
     }
     
     /* رسائل التأكيد */
@@ -612,6 +712,12 @@
   <header>
     <div class="profile-container">
       <img class="profile-pic" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t39.30808-6/480165206_3885436888433146_8651813085679743150_n.jpg?stp=dst-jpg_p526x296_tt6&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=6ee11a&amp;_nc_ohc=z5KBKS-4KeUQ7kNvwHSDkyG&amp;_nc_oc=AdlYnQlZo3jE97f6BVietWT2ZMTfEg1NZPyZXB-sQxyYmVylPBkOtyevHYsTF4SBPNc&amp;_nc_zt=23&amp;_nc_ht=scontent-hbe1-1.xx&amp;_nc_gid=KugIi31X7ugHVQvSVEbw2w&amp;oh=00_AfQCNvlaEUgxmaqrZp9krFuLKP3J1X6yRY3bb2U3vU_yng&amp;oe=687489AA" alt="صورة محمود مدحت صدق">
+      
+      <!-- فقاعة شعار MahWay كقمر يدور -->
+      <a href="https://mahway-official.github.io/MahWay/" class="mahway-bubble" target="_blank">
+        <img src="https://mahway-official.github.io/MahWay/assets/images/logo.png" alt="شعار MahWay">
+      </a>
+      
       <h1 id="name-title">Mahmoud Medhat Sadeq</h1>
       <p id="title-desc">المعروف بـ M.OPI.M - مصمم جرافيك، مبرمج، ومونتير</p>
     </div>
@@ -964,9 +1070,6 @@
       // إضافة التعليق إلى القائمة
       addCommentToContainer(commentData);
       
-      // زيادة عدد التعليقات
-      updateCommentsCount();
-      
       // تحديث وقت الإرسال
       updateSubmissionTime('comment');
       
@@ -991,6 +1094,19 @@
       return false;
     }
     
+    // إزالة أقدم تعليق إذا تجاوز العدد 3
+    function removeOldestCommentIfNeeded() {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      if (comments.length > 3) {
+        // إزالة آخر تعليق (الأقدم)
+        comments.pop();
+        localStorage.setItem('comments', JSON.stringify(comments));
+      }
+      
+      // إعادة تحميل التعليقات (سيعرض فقط 3 تعليقات)
+      loadCommentsFromStorage();
+    }
+    
     // حفظ التعليق في localStorage
     function saveCommentToStorage(comment) {
       let comments = JSON.parse(localStorage.getItem('comments')) || [];
@@ -1002,6 +1118,9 @@
     function loadCommentsFromStorage() {
       const comments = JSON.parse(localStorage.getItem('comments')) || [];
       const commentsContainer = document.getElementById("commentsContainer");
+      
+      // مسح التعليقات الحالية
+      commentsContainer.innerHTML = '';
       
       // إضافة التعليقات الوهمية الأولية
       if (comments.length === 0) {
@@ -1020,51 +1139,6 @@
             text: "بصراحة مشيت من عنده بسبب طريقته في الكلام، بس شغله حلو.",
             rating: 3,
             date: "25 يونيو 2025"
-          },
-          {
-            text: "ما شاء الله، إبداع في الشغل وسرعة في التنفيذ.",
-            rating: 5,
-            date: "20 يونيو 2025"
-          },
-          {
-            text: "التسليم كان في الوقت المحدد والجودة ممتازة، شكرًا.",
-            rating: 5,
-            date: "18 يونيو 2025"
-          },
-          {
-            text: "جيد لكن الأسعار غالية شوية.",
-            rating: 3,
-            date: "15 يونيو 2025"
-          },
-          {
-            text: "مافيش كلام، دايماً مبدع ومتجاوب.",
-            rating: 5,
-            date: "10 يونيو 2025"
-          },
-          {
-            text: "التصميم كان جيد لكن التأخير في التسليم كان مشكلة.",
-            rating: 2,
-            date: "5 يونيو 2025"
-          },
-          {
-            text: "شغل متوسط، لكنه يحاول يرضي العميل.",
-            rating: 3,
-            date: "1 يونيو 2025"
-          },
-          {
-            text: "للأسف التجربة كانت سيئة، لم يكن هناك تواصل جيد.",
-            rating: 1,
-            date: "28 مايو 2025"
-          },
-          {
-            text: "أفضل مونتير شفت حياته، شغله بجد تحفه!",
-            rating: 5,
-            date: "25 مايو 2025"
-          },
-          {
-            text: "جودة الشغل ممتازة لكن التأخير في التسليم غير مقبول.",
-            rating: 2,
-            date: "20 مايو 2025"
           }
         ];
         
@@ -1076,15 +1150,15 @@
         return loadCommentsFromStorage();
       }
       
-      // عرض التعليقات
-      comments.forEach(comment => {
+      // عرض آخر 3 تعليقات فقط
+      const recentComments = comments.slice(0, 3);
+      recentComments.forEach(comment => {
         addCommentToContainer(comment);
       });
     }
     
     // تحديث عدد التعليقات
     function updateCommentsCount() {
-      const comments = JSON.parse(localStorage.getItem('comments')) || [];
       document.getElementById('commentsCount').textContent = "1341";
     }
     
